@@ -1,0 +1,25 @@
+SELECT dt,
+         adx_name,
+         country,
+        
+    CASE 
+    WHEN network_type=2 THEN
+    '1'
+    ELSE '0'
+    END AS networkIs2, count(*) AS request_num
+FROM dsp.bid_request_parquet
+WHERE dt<='2018-02-08'
+        AND dt>='2018-01-31'
+        AND adx_name='inmobi'
+GROUP BY  dt, country, adx_name,
+    CASE 
+    WHEN network_type=2 THEN
+    '1'
+    ELSE '0'
+    END
+ORDER BY  dt, country, adx_name,
+    CASE 
+    WHEN network_type=2 THEN
+    '1'
+    ELSE '0'
+    END
